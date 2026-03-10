@@ -1,1 +1,62 @@
-{"type":"object","properties":{"id":{"type":"number"},"email":{"type":"string","example":"john.doe@example.com"},"provider":{"type":"string","example":"email"},"socialId":{"type":"string","example":"1234567890"},"firstName":{"type":"string","example":"John"},"lastName":{"type":"string","example":"Doe"},"photo":{"type":"object","properties":{"id":{"type":"string","example":"cbcfa8b8-3a25-4adb-a9c6-e325f0d0f3ae"},"path":{"type":"string","example":"https://example.com/path/to/file.jpg"}},"required":["id","path"],"x-readme-ref-name":"FileType"},"role":{"type":"object","properties":{"id":{"type":"number"},"name":{"type":"string","example":"admin"}},"required":["id","name"],"x-readme-ref-name":"Role"},"status":{"type":"object","properties":{"id":{"type":"number"},"name":{"type":"string","example":"active"}},"required":["id","name"],"x-readme-ref-name":"Status"},"createdAt":{"format":"date-time","type":"string"},"updatedAt":{"format":"date-time","type":"string"},"deletedAt":{"format":"date-time","type":"string"}},"required":["id","email","provider","socialId","firstName","lastName","photo","role","status","createdAt","updatedAt","deletedAt"],"x-readme-ref-name":"User"}
+{
+  "type": "object",
+  "properties": {
+    "id": { "type": "number" },
+    "email": { "type": "string", "example": "john.doe@example.com" },
+    "provider": { "type": "string", "example": "email" },
+    "socialId": { "type": "string", "example": "1234567890" },
+    "firstName": { "type": "string", "example": "John" },
+    "lastName": { "type": "string", "example": "Doe" },
+    "photo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "cbcfa8b8-3a25-4adb-a9c6-e325f0d0f3ae"
+        },
+        "path": {
+          "type": "string",
+          "example": "https://example.com/path/to/file.jpg"
+        }
+      },
+      "required": ["id", "path"],
+      "x-readme-ref-name": "FileType"
+    },
+    "role": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "number" },
+        "name": { "type": "string", "example": "admin" }
+      },
+      "required": ["id", "name"],
+      "x-readme-ref-name": "Role"
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "number" },
+        "name": { "type": "string", "example": "active" }
+      },
+      "required": ["id", "name"],
+      "x-readme-ref-name": "Status"
+    },
+    "createdAt": { "format": "date-time", "type": "string" },
+    "updatedAt": { "format": "date-time", "type": "string" },
+    "deletedAt": { "format": "date-time", "type": "string" }
+  },
+  "required": [
+    "id",
+    "email",
+    "provider",
+    "socialId",
+    "firstName",
+    "lastName",
+    "photo",
+    "role",
+    "status",
+    "createdAt",
+    "updatedAt",
+    "deletedAt"
+  ],
+  "x-readme-ref-name": "User"
+}

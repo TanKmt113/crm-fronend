@@ -41,7 +41,7 @@ export default function PublicHeader() {
             </Link>
           ))}
           <Link
-            href="/admin/login"
+            href="/login"
             className="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition-all hover:bg-slate-800"
           >
             Admin Portal
@@ -79,7 +79,7 @@ export default function PublicHeader() {
                 </Link>
               ))}
               <Link
-                href="/admin/login"
+                href="/login"
                 className="w-full rounded-lg bg-slate-900 py-3 text-center text-white"
               >
                 Admin Portal

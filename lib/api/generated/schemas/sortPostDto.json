@@ -1,1 +1,8 @@
-{"type":"object","properties":{"orderBy":{"type":"string"},"order":{"type":"string"}},"x-readme-ref-name":"SortPostDto"}
+{
+  "type": "object",
+  "properties": {
+    "orderBy": { "type": "string" },
+    "order": { "type": "string" }
+  },
+  "x-readme-ref-name": "SortPostDto"
+}

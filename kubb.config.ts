@@ -1,8 +1,8 @@
 import { defineConfig } from '@kubb/core';
 import { pluginOas } from '@kubb/plugin-oas';
 import { pluginTs } from '@kubb/plugin-ts';
+import { pluginClient } from '@kubb/plugin-client';
 import { pluginTanstackQuery } from '@kubb/plugin-tanstack-query';
-import { reactPlugin } from '@kubb/react';
 
 export default defineConfig({
   root: '.',
@@ -14,17 +14,37 @@ export default defineConfig({
     clean: true,
   },
   plugins: [
-    pluginOas({}),
+    pluginOas({
+      validate: false,
+    }),
     pluginTs({
       output: {
-        path: 'types',
+        path: './types',
+      },
+      group: {
+        type: 'tag',
       },
     }),
-    reactPlugin,
-    pluginTanstackQuery({
-      framework: 'react',
+    pluginClient({
       output: {
-        path: 'hooks',
+        path: './clients',
+      },
+      group: {
+        type: 'tag',
+      },
+      dataReturnType: 'data',
+      pathParamsType: 'object',
+      importPath: '@/lib/axios-client',
+    }),
+    pluginTanstackQuery({
+      output: {
+        path: './hooks',
+      },
+      group: {
+        type: 'tag',
+      },
+      client: {
+        importPath: '@/lib/api-client',
       },
     }),
   ],

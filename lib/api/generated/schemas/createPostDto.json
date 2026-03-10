@@ -1,1 +1,16 @@
-{"type":"object","properties":{"title":{"type":"string","example":"My First Blog Post"},"description":{"type":"string","example":"Brief description"},"content":{"type":"string","example":"Full content of the post"},"featuredImage":{"type":"string","example":"https://example.com/image.jpg"},"isPublished":{"type":"boolean","example":false},"statusId":{"type":"number"}},"required":["title","content"],"x-readme-ref-name":"CreatePostDto"}
+{
+  "type": "object",
+  "properties": {
+    "title": { "type": "string", "example": "My First Blog Post" },
+    "description": { "type": "string", "example": "Brief description" },
+    "content": { "type": "string", "example": "Full content of the post" },
+    "featuredImage": {
+      "type": "string",
+      "example": "https://example.com/image.jpg"
+    },
+    "isPublished": { "type": "boolean", "example": false },
+    "statusId": { "type": "number" }
+  },
+  "required": ["title", "content"],
+  "x-readme-ref-name": "CreatePostDto"
+}

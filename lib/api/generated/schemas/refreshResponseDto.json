@@ -1,1 +1,10 @@
-{"type":"object","properties":{"token":{"type":"string"},"refreshToken":{"type":"string"},"tokenExpires":{"type":"number"}},"required":["token","refreshToken","tokenExpires"],"x-readme-ref-name":"RefreshResponseDto"}
+{
+  "type": "object",
+  "properties": {
+    "token": { "type": "string" },
+    "refreshToken": { "type": "string" },
+    "tokenExpires": { "type": "number" }
+  },
+  "required": ["token", "refreshToken", "tokenExpires"],
+  "x-readme-ref-name": "RefreshResponseDto"
+}

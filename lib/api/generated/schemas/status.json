@@ -1,1 +1,9 @@
-{"type":"object","properties":{"id":{"type":"number"},"name":{"type":"string","example":"active"}},"required":["id","name"],"x-readme-ref-name":"Status"}
+{
+  "type": "object",
+  "properties": {
+    "id": { "type": "number" },
+    "name": { "type": "string", "example": "active" }
+  },
+  "required": ["id", "name"],
+  "x-readme-ref-name": "Status"
+}

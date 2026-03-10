@@ -1,1 +1,15 @@
-{"type":"object","properties":{"id":{"type":"string","example":"cbcfa8b8-3a25-4adb-a9c6-e325f0d0f3ae"},"path":{"type":"string","example":"https://example.com/path/to/file.jpg"}},"required":["id","path"],"x-readme-ref-name":"FileType"}
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "cbcfa8b8-3a25-4adb-a9c6-e325f0d0f3ae"
+    },
+    "path": {
+      "type": "string",
+      "example": "https://example.com/path/to/file.jpg"
+    }
+  },
+  "required": ["id", "path"],
+  "x-readme-ref-name": "FileType"
+}

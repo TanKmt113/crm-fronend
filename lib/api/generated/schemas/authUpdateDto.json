@@ -1,1 +1,17 @@
-{"type":"object","properties":{"photo":{"type":"object","properties":{"id":{"type":"string"}},"required":["id"],"x-readme-ref-name":"FileDto"},"firstName":{"type":"string","example":"John"},"lastName":{"type":"string","example":"Doe"},"email":{"type":"string","example":"new.email@example.com"},"password":{"type":"string"},"oldPassword":{"type":"string"}},"x-readme-ref-name":"AuthUpdateDto"}
+{
+  "type": "object",
+  "properties": {
+    "photo": {
+      "type": "object",
+      "properties": { "id": { "type": "string" } },
+      "required": ["id"],
+      "x-readme-ref-name": "FileDto"
+    },
+    "firstName": { "type": "string", "example": "John" },
+    "lastName": { "type": "string", "example": "Doe" },
+    "email": { "type": "string", "example": "new.email@example.com" },
+    "password": { "type": "string" },
+    "oldPassword": { "type": "string" }
+  },
+  "x-readme-ref-name": "AuthUpdateDto"
+}

@@ -1,1 +1,10 @@
-{"type":"object","properties":{"idToken":{"type":"string","example":"abc"},"firstName":{"type":"string"},"lastName":{"type":"string"}},"required":["idToken"],"x-readme-ref-name":"AuthAppleLoginDto"}
+{
+  "type": "object",
+  "properties": {
+    "idToken": { "type": "string", "example": "abc" },
+    "firstName": { "type": "string" },
+    "lastName": { "type": "string" }
+  },
+  "required": ["idToken"],
+  "x-readme-ref-name": "AuthAppleLoginDto"
+}

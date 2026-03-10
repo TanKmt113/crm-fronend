@@ -1,1 +1,11 @@
-{"type":"object","properties":{"email":{"type":"string","example":"test1@example.com"},"password":{"type":"string"},"firstName":{"type":"string","example":"John"},"lastName":{"type":"string","example":"Doe"}},"required":["email","password","firstName","lastName"],"x-readme-ref-name":"AuthRegisterLoginDto"}
+{
+  "type": "object",
+  "properties": {
+    "email": { "type": "string", "example": "test1@example.com" },
+    "password": { "type": "string" },
+    "firstName": { "type": "string", "example": "John" },
+    "lastName": { "type": "string", "example": "Doe" }
+  },
+  "required": ["email", "password", "firstName", "lastName"],
+  "x-readme-ref-name": "AuthRegisterLoginDto"
+}
