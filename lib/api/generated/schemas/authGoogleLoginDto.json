@@ -1,0 +1,1 @@
+{"type":"object","properties":{"idToken":{"type":"string","example":"abc"}},"required":["idToken"],"x-readme-ref-name":"AuthGoogleLoginDto"}

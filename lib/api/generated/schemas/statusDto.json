@@ -1,0 +1,1 @@
+{"type":"object","properties":{"id":{"type":"object"}},"required":["id"],"x-readme-ref-name":"StatusDto"}

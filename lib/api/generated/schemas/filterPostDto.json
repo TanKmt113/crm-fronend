@@ -1,0 +1,1 @@
+{"type":"object","properties":{"isPublished":{"type":"boolean"},"authorId":{"type":"number"},"statusId":{"type":"number"}},"x-readme-ref-name":"FilterPostDto"}

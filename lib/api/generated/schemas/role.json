@@ -1,0 +1,1 @@
+{"type":"object","properties":{"id":{"type":"number"},"name":{"type":"string","example":"admin"}},"required":["id","name"],"x-readme-ref-name":"Role"}

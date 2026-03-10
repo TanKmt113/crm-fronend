@@ -1,0 +1,1 @@
+{"type":"object","properties":{"hash":{"type":"string"}},"required":["hash"],"x-readme-ref-name":"AuthConfirmEmailDto"}
