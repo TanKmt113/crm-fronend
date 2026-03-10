@@ -42,12 +42,12 @@ export default function AdminDashboard() {
       <Row gutter={[16, 16]} className="mb-8">
         {stats.map((item, index) => (
           <Col xs={24} sm={12} lg={6} key={index}>
-            <Card bordered={false} className="shadow-sm">
+            <Card variant="borderless" className="shadow-sm">
               <Statistic
                 title={item.title}
                 value={item.value}
                 prefix={item.icon}
-                valueStyle={{ color: item.color }}
+                styles={{ content: { color: item.color } }}
               />
             </Card>
           </Col>
@@ -56,7 +56,7 @@ export default function AdminDashboard() {
 
       <Row gutter={[16, 16]}>
         <Col span={24}>
-          <Card title="Bài viết mới nhất" bordered={false} className="shadow-sm">
+          <Card title="Bài viết mới nhất" variant="borderless" className="shadow-sm">
             <Table
               columns={columns}
               dataSource={MOCK_POSTS.map(p => ({ ...p, key: p.id }))}

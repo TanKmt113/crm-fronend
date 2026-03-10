@@ -1,4 +1,4 @@
-import { Category, Post, Customer, Receivable } from '@/types';
+import { Category, Post, Customer, Receivable, WebsiteSettings, HomepageSection } from '@/types';
 
 export const MOCK_CATEGORIES: Category[] = [
   { id: '1', name: 'Công nghệ', slug: 'cong-nghe', createdAt: '2024-01-01', updatedAt: '2024-01-01' },
@@ -49,3 +49,17 @@ export const MOCK_CUSTOMERS: Customer[] = [
 export const MOCK_RECEIVABLES: Receivable[] = [
   { id: 'r1', customerId: 'c1', customer: MOCK_CUSTOMERS[0], amount: 50000000, dueDate: '2024-04-01', status: 'PENDING', createdAt: '2024-03-01', updatedAt: '2024-03-01' },
 ];
+
+export const MOCK_HOMEPAGE_SECTIONS: HomepageSection[] = [
+  { id: '1', name: 'Hero Banner', enabled: true, order: 1 },
+  { id: '2', name: 'Giới thiệu dịch vụ', enabled: true, order: 2 },
+  { id: '3', name: 'Bài viết nổi bật', enabled: true, order: 3 },
+  { id: '4', name: 'Đối tác', enabled: true, order: 4 },
+  { id: '5', name: 'Liên hệ', enabled: true, order: 5 },
+];
+
+export const MOCK_WEBSITE_SETTINGS: WebsiteSettings = {
+  logo: 'https://placehold.co/200x60/png?text=CorpBase+Logo',
+  banner: 'https://placehold.co/1200x400/png?text=Welcome+Banner',
+  homepageSections: MOCK_HOMEPAGE_SECTIONS,
+};

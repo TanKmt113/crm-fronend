@@ -1,7 +1,12 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight, CheckCircle2, BarChart3, Users, Sparkles, ShieldCheck, Globe } from 'lucide-react';
-import { motion } from 'motion/react';
+import Link from "next/link";
+import Image from "next/image";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Sparkles,
+  ShieldCheck,
+  Globe,
+} from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -21,7 +26,9 @@ export default function HomePage() {
                 chính hãng
               </h1>
               <p className="mb-10 max-w-xl text-lg text-slate-600 leading-relaxed">
-                Harico Global - đơn vị phân phối độc quyền các thương hiệu mỹ phẩm hàng đầu từ Hàn Quốc. Cung cấp giải pháp toàn diện cho đại lý, spa, clinic và đối tác kinh doanh trên toàn quốc.
+                Harico Global - đơn vị phân phối độc quyền các thương hiệu mỹ
+                phẩm hàng đầu từ Hàn Quốc. Cung cấp giải pháp toàn diện cho đại
+                lý, spa, clinic và đối tác kinh doanh trên toàn quốc.
               </p>
               <div className="mb-12 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                 <Link
@@ -38,7 +45,7 @@ export default function HomePage() {
                   Tìm hiểu thêm
                 </Link>
               </div>
-              
+
               {/* Stats */}
               <div className="flex space-x-12 border-t border-slate-100 pt-8">
                 <div>
@@ -74,9 +81,12 @@ export default function HomePage() {
                     <CheckCircle2 size={24} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900">100% Chính hãng</h4>
+                    <h4 className="font-bold text-slate-900">
+                      100% Chính hãng
+                    </h4>
                     <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                      Cam kết nguồn gốc xuất xứ rõ ràng, đầy đủ giấy tờ chứng nhận
+                      Cam kết nguồn gốc xuất xứ rõ ràng, đầy đủ giấy tờ chứng
+                      nhận
                     </p>
                   </div>
                 </div>
@@ -90,32 +100,40 @@ export default function HomePage() {
       <section className="bg-slate-50 py-20">
         <div className="container mx-auto px-4">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl">Giải pháp của chúng tôi</h2>
+            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl">
+              Giải pháp của chúng tôi
+            </h2>
             <p className="mx-auto max-w-2xl text-slate-600">
-              Chúng tôi cung cấp các công cụ cần thiết để bạn phát triển kinh doanh bền vững trong ngành làm đẹp.
+              Chúng tôi cung cấp các công cụ cần thiết để bạn phát triển kinh
+              doanh bền vững trong ngành làm đẹp.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
-                title: 'Phân phối độc quyền',
-                desc: 'Đưa các thương hiệu mỹ phẩm hàng đầu Hàn Quốc về Việt Nam với chính sách tốt nhất.',
+                title: "Phân phối độc quyền",
+                desc: "Đưa các thương hiệu mỹ phẩm hàng đầu Hàn Quốc về Việt Nam với chính sách tốt nhất.",
                 icon: <Globe className="text-pink-600" size={32} />,
               },
               {
-                title: 'Hỗ trợ Marketing',
-                desc: 'Cung cấp tài liệu, hình ảnh và chiến lược quảng bá chuyên nghiệp cho đại lý.',
+                title: "Hỗ trợ Marketing",
+                desc: "Cung cấp tài liệu, hình ảnh và chiến lược quảng bá chuyên nghiệp cho đại lý.",
                 icon: <Sparkles className="text-pink-600" size={32} />,
               },
               {
-                title: 'Cam kết chất lượng',
-                desc: '100% sản phẩm chính hãng, đầy đủ giấy tờ công bố và kiểm định chất lượng.',
+                title: "Cam kết chất lượng",
+                desc: "100% sản phẩm chính hãng, đầy đủ giấy tờ công bố và kiểm định chất lượng.",
                 icon: <ShieldCheck className="text-pink-600" size={32} />,
               },
             ].map((f, i) => (
-              <div key={i} className="rounded-2xl bg-white p-8 shadow-sm transition-all hover:shadow-md">
+              <div
+                key={i}
+                className="rounded-2xl bg-white p-8 shadow-sm transition-all hover:shadow-md"
+              >
                 <div className="mb-6">{f.icon}</div>
-                <h3 className="mb-3 text-xl font-bold text-slate-900">{f.title}</h3>
+                <h3 className="mb-3 text-xl font-bold text-slate-900">
+                  {f.title}
+                </h3>
                 <p className="text-slate-600">{f.desc}</p>
               </div>
             ))}

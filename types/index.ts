@@ -49,6 +49,26 @@ export interface Customer extends BaseEntity {
   status: 'ACTIVE' | 'INACTIVE' | 'LEAD';
 }
 
+// --- Website Settings Types ---
+export interface HomepageSection {
+  id: string;
+  name: string;
+  enabled: boolean;
+  order: number;
+}
+
+export interface WebsiteSettings {
+  logo: string;
+  banner: string;
+  homepageSections: HomepageSection[];
+}
+
+export interface WebsiteSettingsUpdatePayload {
+  logo?: File;
+  banner?: File;
+  sections?: HomepageSection[];
+}
+
 export interface Receivable extends BaseEntity {
   customerId: string;
   customer?: Customer;

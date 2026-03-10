@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { Layout, Menu, Button, theme, Dropdown, Avatar, Space } from 'antd';
+import React, { useState, useEffect } from "react";
+import { Layout, Menu, Button, theme, Dropdown, Avatar, Space } from "antd";
+import type { MenuProps } from "antd";
 import {
   DashboardOutlined,
   FileTextOutlined,
@@ -12,13 +13,17 @@ import {
   MenuFoldOutlined,
   SettingOutlined,
   GlobalOutlined,
-} from '@ant-design/icons';
-import { useRouter, usePathname } from 'next/navigation';
-import Link from 'next/link';
+} from "@ant-design/icons";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
 
 const { Header, Sider, Content } = Layout;
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [collapsed, setCollapsed] = useState(false);
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
@@ -35,79 +40,70 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  useEffect(() => {
-    if (!mounted) return;
-    
-    // Simple auth check
-    const token = localStorage.getItem('auth_token');
-    if (!token && pathname !== '/admin/login') {
-      router.push('/admin/login');
-    }
-  }, [mounted, router, pathname]);
-
-  if (!mounted) return null;
-  if (pathname === '/admin/login') return <>{children}</>;
-
-  const menuItems = [
+  const menuItems: MenuProps["items"] = [
     {
-      key: '/admin/dashboard',
+      key: "/admin/dashboard",
       icon: <DashboardOutlined />,
       label: <Link href="/admin/dashboard">Dashboard</Link>,
     },
     {
-      key: 'blog',
+      key: "blog",
       icon: <FileTextOutlined />,
-      label: 'Quản lý Blog',
+      label: "Quản lý Blog",
       children: [
         {
-          key: '/admin/posts',
+          key: "/admin/posts",
           label: <Link href="/admin/posts">Bài viết</Link>,
         },
         {
-          key: '/admin/categories',
+          key: "/admin/categories",
           label: <Link href="/admin/categories">Danh mục</Link>,
         },
       ],
     },
     {
-      key: '/admin/customers',
+      key: "/admin/customers",
       icon: <UserOutlined />,
       label: <Link href="/admin/customers">Khách hàng (Phase 2)</Link>,
     },
     {
-      key: '/admin/receivables',
+      key: "/admin/receivables",
       icon: <DollarOutlined />,
       label: <Link href="/admin/receivables">Công nợ (Phase 2)</Link>,
     },
     {
-      type: 'divider',
+      type: "divider",
     },
     {
-      key: 'settings',
+      key: "/admin/settings",
       icon: <SettingOutlined />,
-      label: 'Cài đặt',
+      label: <Link href="/admin/settings">Cài đặt</Link>,
     },
     {
-      key: 'public-site',
+      key: "public-site",
       icon: <GlobalOutlined />,
-      label: <Link href="/" target="_blank">Xem Website</Link>,
+      label: (
+        <Link href="/" target="_blank">
+          Xem Website
+        </Link>
+      ),
     },
   ];
 
   const handleLogout = () => {
-    localStorage.removeItem('auth_token');
-    router.push('/admin/login');
+    localStorage.removeItem("auth_token");
+    router.push("/admin/login");
   };
 
   const userMenu = {
     items: [
       {
-        key: 'profile',
-        label: 'Hồ sơ cá nhân',
+        key: "profile",
+        label: "Hồ sơ cá nhân",
       },
       {
-        key: 'logout',
-        label: 'Đăng xuất',
+        key: "logout",
+        label: "Đăng xuất",
         icon: <LogoutOutlined />,
         onClick: handleLogout,
       },
@@ -115,10 +111,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   };
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider trigger={null} collapsible collapsed={collapsed} theme="light" className="shadow-sm">
+    <Layout style={{ minHeight: "100vh" }}>
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        theme="light"
+        className="shadow-sm"
+      >
         <div className="flex h-16 items-center justify-center border-b font-bold text-blue-600">
-          {collapsed ? 'CB' : 'CORPBASE ADMIN'}
+          {collapsed ? "CB" : "CORPBASE ADMIN"}
         </div>
         <Menu
           mode="inline"
@@ -129,30 +131,33 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} className="flex items-center justify-between px-4 shadow-sm">
+        <Header
+          style={{ padding: "15px", background: colorBgContainer }}
+          className="flex items-center justify-between px-1 shadow-sm"
+        >
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
-            style={{ fontSize: '16px', width: 64, height: 64 }}
+            style={{ fontSize: "16px", width: 64, height: 64 }}
           />
           <div className="flex items-center gap-4">
             <Dropdown menu={userMenu} placement="bottomRight">
               <Space className="cursor-pointer">
                 <Avatar icon={<UserOutlined />} />
-                <span className="hidden md:inline">Administrator</span>
+                <span className="hidden md:inline">Admin</span>
               </Space>
             </Dropdown>
           </div>
         </Header>
         <Content
           style={{
-            margin: '24px 16px',
+            margin: "24px 16px",
             padding: 24,
             minHeight: 280,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
-            overflow: 'initial',
+            overflow: "initial",
           }}
         >
           {children}
