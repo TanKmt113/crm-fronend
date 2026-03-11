@@ -13,6 +13,7 @@ import {
   MenuFoldOutlined,
   SettingOutlined,
   GlobalOutlined,
+  PictureOutlined,
 } from "@ant-design/icons";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
@@ -67,6 +68,11 @@ export default function AdminLayout({
       key: "/admin/customers",
       icon: <UserOutlined />,
       label: <Link href="/admin/customers">Khách hàng (Phase 2)</Link>,
+    },
+    {
+      key: "/admin/media",
+      icon: <PictureOutlined />,
+      label: <Link href="/admin/media">Thư viện Media</Link>,
     },
     {
       key: "/admin/receivables",
