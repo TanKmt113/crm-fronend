@@ -1,6 +1,6 @@
 'use client';
 
-import { Form, Input, Switch, Button, Card, Typography, Space, Divider, Tag } from 'antd';
+import { Form, Input, Switch, Button, Card, Typography, Space, Divider, Tag, Spin } from 'antd';
 import { toast } from 'sonner';
 import {
   ArrowLeftOutlined,
@@ -10,9 +10,10 @@ import {
   PictureOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { postsControllerCreateV1 } from '@/lib/api/generated/clients';
+import { useRouter, useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { postsControllerUpdateV1, postsControllerFindOneV1 } from '@/lib/api/generated/clients';
+import type { Post } from '@/lib/api/generated/types';
 import dynamic from 'next/dynamic';
 
 const RichTextEditor = dynamic(() => import('@/components/admin/rich-text-editor'), { ssr: false });
@@ -20,21 +21,50 @@ const RichTextEditor = dynamic(() => import('@/components/admin/rich-text-editor
 const { Title, Text } = Typography;
 const { TextArea } = Input;
 
-export default function CreatePostPage() {
+export default function EditPostPage() {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(true);
   const [isPublished, setIsPublished] = useState(false);
+  const [post, setPost] = useState<Post | null>(null);
   const router = useRouter();
+  const params = useParams<{ id: string }>();
+  const id = params.id;
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      setFetching(true);
+      try {
+        const p = await postsControllerFindOneV1({ id });
+        setPost(p);
+        setIsPublished(p.isPublished);
+        form.setFieldsValue({
+          title: p.title,
+          description: p.description,
+          content: p.content,
+          featuredImage: p.featuredImage,
+          isPublished: p.isPublished,
+        });
+      } catch (error: any) {
+        toast.error(error?.response?.data?.message || 'Không tìm thấy bài viết!');
+        router.push('/admin/posts');
+      } finally {
+        setFetching(false);
+      }
+    };
+
+    if (id) fetchPost();
+  }, [id, form, router]);
 
   const handleSave = async (publish: boolean) => {
     try {
       const values = await form.validateFields();
       setLoading(true);
-      await postsControllerCreateV1({ ...values, isPublished: publish });
+      await postsControllerUpdateV1({ id }, { ...values, isPublished: publish });
       toast.success(publish ? 'Đã xuất bản bài viết!' : 'Đã lưu nháp!');
       router.push('/admin/posts');
     } catch (error: any) {
-      if (error?.errorFields) return; // form validation error
+      if (error?.errorFields) return; // form validation
       const errorMessage = error?.response?.data?.message || 'Lưu bài viết thất bại!';
       toast.error(errorMessage);
     } finally {
@@ -45,13 +75,13 @@ export default function CreatePostPage() {
   return (
     <div className="min-h-screen">
       {/* Top bar */}
-      <div className="sticky top-0 z-10 flex items-center justify-between bg-white border-b border-gray-200 py-2">
+      <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white py-2">
         <Space>
           <Button icon={<ArrowLeftOutlined />} onClick={() => router.push('/admin/posts')}>
             Quay lại
           </Button>
           <Title level={5} style={{ margin: 0 }}>
-            Thêm bài viết mới
+            Chỉnh sửa: {post?.title}
           </Title>
         </Space>
         <Space>
@@ -72,16 +102,13 @@ export default function CreatePostPage() {
 
       {/* Main content */}
       <div className="mx-auto max-w-7xl p-6">
-        <Form
-          form={form}
-          layout="vertical"
-          initialValues={{ isPublished: false }}
-        >
+        <Spin spinning={fetching} description="Đang tải bài viết..." size="large">
+        <Form form={form} layout="vertical">
           <div className="flex gap-6">
             {/* Left - Main editor */}
-            <div className="flex-1 min-w-0 flex flex-col gap-4">
+            <div className="flex min-w-0 flex-1 flex-col gap-4">
               {/* Title */}
-              <Card className="" styles={{ body: { padding: '10px 14px' } }}>
+              <Card styles={{ body: { padding: '10px 14px' } }}>
                 <Form.Item
                   name="title"
                   style={{ marginBottom: 0 }}
@@ -144,7 +171,7 @@ export default function CreatePostPage() {
             </div>
 
             {/* Right sidebar */}
-            <div className="w-72 shrink-0 flex flex-col gap-4">
+            <div className="flex w-72 shrink-0 flex-col gap-4">
               {/* Publish box */}
               <Card title="Xuất bản" className="shadow-sm">
                 <div className="space-y-3">
@@ -161,7 +188,7 @@ export default function CreatePostPage() {
                   <Divider style={{ margin: '12px 0' }} />
                   <Form.Item name="isPublished" valuePropName="checked" style={{ marginBottom: 0 }}>
                     <div className="flex items-center justify-between">
-                      <Text className="text-sm font-medium">Xuất bản ngay:</Text>
+                      <Text className="text-sm font-medium">Trạng thái xuất bản:</Text>
                       <Switch
                         checkedChildren="Bật"
                         unCheckedChildren="Tắt"
@@ -199,7 +226,10 @@ export default function CreatePostPage() {
                   style={{ marginBottom: 0 }}
                   rules={[{ type: 'url', message: 'Vui lòng nhập URL hợp lệ!' }]}
                 >
-                  <Input placeholder="https://example.com/image.jpg" prefix={<PictureOutlined />} />
+                  <Input
+                    placeholder="https://example.com/image.jpg"
+                    prefix={<PictureOutlined />}
+                  />
                 </Form.Item>
                 <Text type="secondary" className="mt-2 block text-xs">
                   Nhập URL ảnh đại diện cho bài viết
@@ -208,6 +238,7 @@ export default function CreatePostPage() {
             </div>
           </div>
         </Form>
+        </Spin>
       </div>
     </div>
   );
