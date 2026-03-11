@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { List, Button, Typography, Space } from 'antd';
+import { Button, Typography, Space } from 'antd';
 import { DragOutlined } from '@ant-design/icons';
 import type { HomepageSection } from '@/types';
 
@@ -60,52 +60,45 @@ export default function SortableSections({
   };
 
   return (
-    <List
-      size="large"
-      dataSource={sections}
-      renderItem={(section) => (
-        <List.Item
+    <div className="flex flex-col gap-3">
+      {sections.map((section) => (
+        <div
+          key={section.id}
           draggable
           onDragStart={(e) => handleDragStart(e, section)}
           onDragOver={handleDragOver}
           onDrop={(e) => handleDrop(e, section)}
           onDragEnd={handleDragEnd}
-          className={`cursor-move rounded border border-gray-200 bg-white p-4 transition-all hover:border-blue-400 hover:shadow-md ${
+          className={`flex cursor-move items-center justify-between rounded border border-gray-200 bg-white p-4 transition-all hover:border-blue-400 hover:shadow-md ${
             draggedItem?.id === section.id ? 'opacity-50' : ''
           }`}
-          style={{ marginBottom: '12px' }}
-          actions={[
-            <Button
-              key="toggle"
-              type={section.enabled ? 'primary' : 'default'}
-              onClick={() => toggleSection(section.id)}
-            >
-              {section.enabled ? 'Đang hiển thị' : 'Đã ẩn'}
-            </Button>,
-          ]}
         >
-          <List.Item.Meta
-            avatar={
-              <div className="flex h-10 w-10 items-center justify-center rounded bg-blue-100 text-blue-600">
-                <DragOutlined />
-              </div>
-            }
-            title={
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded bg-blue-100 text-blue-600">
+              <DragOutlined />
+            </div>
+            <div>
               <Space>
                 <Text strong>#{section.order}</Text>
                 <Text>{section.name}</Text>
               </Space>
-            }
-            description={
-              <Text type="secondary">
-                {section.enabled
-                  ? 'Section này đang được hiển thị'
-                  : 'Section này đang bị ẩn'}
-              </Text>
-            }
-          />
-        </List.Item>
-      )}
-    />
+              <div>
+                <Text type="secondary">
+                  {section.enabled
+                    ? 'Section này đang được hiển thị'
+                    : 'Section này đang bị ẩn'}
+                </Text>
+              </div>
+            </div>
+          </div>
+          <Button
+            type={section.enabled ? 'primary' : 'default'}
+            onClick={() => toggleSection(section.id)}
+          >
+            {section.enabled ? 'Đang hiển thị' : 'Đã ẩn'}
+          </Button>
+        </div>
+      ))}
+    </div>
   );
 }
